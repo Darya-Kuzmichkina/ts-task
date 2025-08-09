@@ -184,37 +184,223 @@
 // 18. Создайте массив объектов, представляющих книги, и найдите книгу где автор
 // Булгаков (author – одно из полей объекта)
 
-interface iBooks  {
-        title: string;
-        author: string;
-        year: number;
-    }
+// interface iBooks  {
+//         title: string;
+//         author: string;
+//         year: number;
+//     }
 
-const books: iBooks[] = [
+// const books: iBooks[] = [
+//     {
+//         title: "Война и мир",
+//         author: "Толстой",
+//         year: 1869
+//     },
+//     {
+//         title: "Преступление и наказание", 
+//         author: "Достоевский",
+//         year: 1866
+//     },
+//     {
+//         title: "Мастер и Маргарита",
+//         author: "Булгаков",
+//         year: 1967
+//     },
+//     {
+//         title: "Собачье сердце",
+//         author: "Булгаков", 
+//         year: 1925
+//     },
+//     {
+//         title: "Мёртвые души",
+//         author: "Гоголь",
+//         year: 1842
+//     }
+// ];
+
+// const res: iBooks[]= books.filter(el=> el.author==='Булгаков');
+// console.log(res);
+
+// 19. Создайте массив объектов, представляющих книги, и отобразите книги где цена
+// каждой > 50 (price – одно из полей объекта)
+
+// interface iBooks {
+//     title: string;
+//         author: string;
+//         price: number;
+// }
+// const books = [
+//     {
+//         title: "Гарри Поттер и философский камень",
+//         author: "Роулинг",
+//         price: 65
+//     },
+//     {
+//         title: "Властелин колец", 
+//         author: "Толкин",
+//         price: 80
+//     },
+//     {
+//         title: "1984",
+//         author: "Оруэлл",
+//         price: 45
+//     },
+//     {
+//         title: "Три товарища",
+//         author: "Ремарк", 
+//         price: 55
+//     },
+//     {
+//         title: "Маленький принц",
+//         author: "Сент-Экзюпери",
+//         price: 30
+//     },
+//     {
+//         title: "Атлант расправил плечи",
+//         author: "Рэнд",
+//         price: 120
+//     },
+//     {
+//         title: "Шерлок Холмс",
+//         author: "Дойл",
+//         price: 42
+//     }
+// ];
+
+// const res: iBooks[]= books.filter(el=> el.price>50);
+// console.log(res);
+
+// 20.Создайте массив объектов, представляющих книги, и найдите книгу с самым
+// большим количеством страниц (count – одно из полей объекта)
+
+// interface iBooks {
+//     title: string;
+//     author: string;
+//     count: number;
+// }
+// const books = [
+//     {
+//         title: "Война и мир",
+//         author: "Толстой",
+//         count: 1225
+//     },
+//     {
+//         title: "Преступление и наказание",
+//         author: "Достоевский",
+//         count: 671
+//     },
+//     {
+//         title: "Мастер и Маргарита",
+//         author: "Булгаков",
+//         count: 470
+//     },
+//     {
+//         title: "Анна Каренина",
+//         author: "Толстой",
+//         count: 864
+//     },
+//     {
+//         title: "Братья Карамазовы",
+//         author: "Достоевский",
+//         count: 796
+//     },
+//     {
+//         title: "Тихий Дон",
+//         author: "Шолохов",
+//         count: 1500
+//     }
+// ];
+
+
+// const res: iBooks | undefined = books.reduce((prev, current) => {
+//     return (prev.count > current.count) ? prev : current;
+// });
+// console.log(res);
+
+// 21. Напишите программу, которая находит и выводит длину наиболее длинного
+// слова в заданной строке.
+
+// const text = "Программирование это очень увлекательная и интересная деятельность";
+// const arr:Array<string>=text.split(' ');
+// let maxLength=0;
+// for (let i = 0; i < arr.length; i++) {
+//    arr[i].length-1>maxLength? maxLength=arr[i].length-1: arr[i].length-1;
+
+// }
+// console.log(maxLength);
+
+// 22. Создайте массив объектов, представляющих сотрудников, с полями "имя" и
+// "зарплата". Найдите среднюю зарплату всех сотрудников.
+
+// interface iemployees{
+//     name: string;
+//     salary:number;
+// }
+// const employees = [
+//     {
+//         name: "Алексей",
+//         salary: 50000
+//     },
+//     {
+//         name: "Мария",
+//         salary: 65000
+//     },
+//     {
+//         name: "Петр",
+//         salary: 45000
+//     },
+//     {
+//         name: "Елена",
+//         salary: 70000
+//     },
+//     {
+//         name: "Дмитрий",
+//         salary: 55000
+//     },
+//     {
+//         name: "Анна",
+//         salary: 60000
+//     }
+// ];
+// const res: number = employees.reduce((sum,el) => sum+=el.salary,0);
+
+// console.log(res/employees.length);
+
+// 23. Дан массив объектов с полями "название", "цена" и "количество". Найдите
+// суммарную стоимостью всех товаров учитывая количество каждого.
+// Итог = цена_1_товара * кол-во_1_товара + цена_2_товара * кол-во_2_товара + ...
+
+interface iproducts {
+    name: string;
+    price: number;
+    quantity: number;
+}
+const products = [
     {
-        title: "Война и мир",
-        author: "Толстой",
-        year: 1869
+        name: "Хлеб",
+        price: 30,
+        quantity: 2
     },
     {
-        title: "Преступление и наказание", 
-        author: "Достоевский",
-        year: 1866
+        name: "Молоко",
+        price: 60,
+        quantity: 3
     },
     {
-        title: "Мастер и Маргарита",
-        author: "Булгаков",
-        year: 1967
+        name: "Яблоки",
+        price: 120,
+        quantity: 1
     },
     {
-        title: "Собачье сердце",
-        author: "Булгаков", 
-        year: 1925
+        name: "Сыр",
+        price: 250,
+        quantity: 2
     },
     {
-        title: "Мёртвые души",
-        author: "Гоголь",
-        year: 1842
+        name: "Мясо",
+        price: 400,
+        quantity: 1
     }
 ];
-
+const res: number= products.reduce((sum,el)=> sum+(el.price*el.quantity),0);
+console.log(res);

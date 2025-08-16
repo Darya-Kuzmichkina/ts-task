@@ -240,3 +240,218 @@
 
 //                                                АБСТРАКЦИЯ И ИНКАПСУЛЯЦИЯ
 
+// 1. Создайте абстрактный класс Shape (Фигура) с абстрактным методом calculateArea()
+// (вычислитьПлощадь). Затем создайте дочерний класс Rectangle (Прямоугольник), который
+// наследует Shape и реализует метод calculateArea() для расчета площади прямоугольника. Формула
+// для вычисления площади прямоугольника: S = длина * ширина
+// Входные: Rectangle(5, 4) → Результат: 20
+// Входные: Rectangle(10, 3) → Результат: 30
+// Входные: Rectangle(7, 7) → Результат: 49
+
+// abstract class Shape{
+//     abstract calculateArea(): number;
+// }
+// class Rectangle extends Shape {
+//     constructor( public length:number,public width:number){
+//         super();}
+//         calculateArea():number{
+//             return this.length*this.width;
+
+//     }
+// }
+// const res=new Rectangle(2,3);
+// console.log(res.calculateArea());
+
+// 2. Создайте абстрактный класс Animal (Животное) с абстрактным методом makeSound() (издатьЗвук).
+// Затем создайте два дочерних класса:
+// • Dog
+// • Cat
+// Каждый из этих классов должен наследовать Animal и реализовывать метод makeSound(),
+// возвращая соответствующий звук животного.
+
+// abstract class Animal {
+//     abstract makeSound(): string;
+// }
+
+// class Dog extends Animal {
+//     makeSound(): string {
+//         return "Гав-гав";
+//     }
+// }
+
+// class Cat extends Animal {
+//     makeSound(): string {
+//         return "Мяу";
+//     }
+// }
+
+// const dog = new Dog();
+// console.log(dog.makeSound()); 
+// const cat = new Cat();
+// console.log(cat.makeSound()); 
+
+// 3. Создайте интерфейс iAccount со следующими методами:
+// • balance: хранит цисловое значение баланса света
+// • getBalance(): возвращает текущий баланс счета
+// • deposit(amount: number): пополняет счет на указанную сумму
+// • withdraw(amount: number): снимает указанную сумму со счета
+// Реализуйте класс Account, который имплементирует интерфейс iAccount. Реализуйте все методы
+// интерфейса. Перед снятием withdraw проверяйте, достаточно ли средств на счете. Если средств
+// недостаточно, выбрасывайте ошибку.
+
+// interface iAccount {
+//     getBalance(): number;
+//     deposit(amount: number): void;
+//     withdraw(amount: number): void;
+// }
+
+// class Account implements iAccount {
+//     balance: number = 50;
+
+//     getBalance(): number {
+//         return this.balance;
+//     }
+
+//     deposit(amount: number): void {
+//         this.balance += amount;
+//     }
+
+//     withdraw(amount: number): void {
+//         if (amount > this.balance) {
+//             throw new Error("Недостаточно средств");
+//         }
+//         this.balance -= amount;
+//     }
+// }
+
+// const account = new Account();
+// account.deposit(100);
+// console.log(account.getBalance()); 
+// account.withdraw(50);
+// console.log(account.getBalance());
+
+// 4. Создайте абстрактный класс "Транспортное средство" (Vehicle), в котором будут два абстрактных
+// метода: "завести" (start) и "остановить" (stop). Реализуйте два класса-наследника — "Автомобиль"
+// (Car) и "Мотоцикл" (Motorcycle). Эти классы должны расширять класс "Транспортное средство" и
+// реализовать методы "завести" и "остановить", чтобы они соответствовали поведению этих
+// транспортных средств (например, через console.log).
+// Входные:
+// let car = new Car();
+// car.start();
+// → Результат: Car started
+// Входные:
+// let car = new Car();
+// car.stop();
+// → Результат: Car stopped
+// Входные:
+// let motorcycle = new Motorcycle();
+// motorcycle.start();
+// → Результат: Motorcycle started
+// Входные:
+// let motorcycle = new Motorcycle();
+// motorcycle.stop();
+// → Результат: Motorcycle stopped
+
+// abstract class Vehicle {
+//     abstract start(): void;
+//     abstract stop(): void;
+// }
+
+// class Car extends Vehicle {
+//     start(): void {
+//         console.log("Car started");
+//     }
+
+//     stop(): void {
+//         console.log("Car stopped");
+//     }
+// }
+
+// class Motorcycle extends Vehicle {
+//     start(): void {
+//         console.log("Motorcycle started");
+//     }
+
+//     stop(): void {
+//         console.log("Motorcycle stopped");
+//     }
+// }
+
+// const car = new Car();
+// car.start(); 
+// car.stop(); 
+
+// const motorcycle = new Motorcycle();
+// motorcycle.start(); 
+// motorcycle.stop();
+
+// 5. Создайте абстрактный класс Fruit (Фрукт) со следующим полем:
+// • fruits: массив объектов, где каждый объект имеет свойства id, title
+// (название) и price (цена)
+// Затем создайте дочерний класс Apple (Яблоко), который наследует
+// Fruit. В классе Apple реализуйте метод getAppleInfo(), который должен
+// возвращать информацию о яблоке из массива fruits, где title равно
+// "яблоко"
+// Входные: [ {"id": 1, "title": "яблоко", "price": 50}, {"id": 2, "title": "банан", "price": 30}, {"id": 3, "title": "груша", "price":
+// 45} ]
+// → Результат: {"id": 1, "title": "яблоко", "price": 50}
+// Входные: [ {"id": 1, "title": "банан", "price": 35}, {"id": 2, "title": "киви", "price": 70}} ] → Результат: null
+
+// interface iFruit {
+//     id: number;
+//     title: string;
+//     price: number;
+// }
+// abstract class Fruit {
+//     abstract arr: iFruit[];
+
+// }
+// class Apple extends Fruit {
+//     arr: iFruit[];
+//     constructor(fruits: iFruit[]) {
+//         super();
+//         this.arr = fruits;
+//     }
+//     getAppleInfo(): iFruit[] {
+//  return this.arr.filter(fr=> fr.title==='яблоко')
+//     }
+// }
+// const apple= new Apple([ {"id": 1, "title": "яблоко", "price": 50}, {"id": 2, "title": "банан", "price": 30}, {"id": 3, "title": "груша", "price":
+// 45} ]);
+// console.log(apple.getAppleInfo());
+
+// 6. Создайте интерфейс iValidation, который будет описывать методы для проверки: isValidEmail(),
+// isValidDate(), isValidPath(). Создайте класс Validation, который реализует интерфейс iValidation.
+// Класс будет иметь публичные методы: isValidEmail(), isValidDate(), isValidPath(). Конструктор класса
+// Validation должен принимать параметры email, date, path и инициализировать их как поля класса
+
+interface iValidation{
+    isValidEmail():boolean;
+    isValidDate():boolean;
+    isValidPath():boolean;
+}
+class Validation implements iValidation{
+
+    constructor(public email:string,public date:string,public path:string){
+this.email=email;
+this.date=date;
+this.path=path;
+    }
+    isValidEmail(): boolean {
+        const emailRegex=/^[A-Za-z0-9\.\-\_]+@[a-z]+\.[a-z]{2,3}$/gm;
+        return emailRegex.test(this.email);
+    }
+     isValidDate(){
+        const dateRegex=/^[0-9]{1,2}\.[0-9]{1,2}\.[0-9]{4}/gm;
+        return dateRegex.test(this.date);
+     }
+     isValidPath(): boolean {
+         const pathRegex= /[A-Z]\:\\[A-Za-z]+\\[A-Za-zа-яА-Я]+\\[A-Za-zа-яА-Я]+\\[A-Za-zа-яА-Я]+/gm;
+         return pathRegex.test(this.path);
+     }
+}
+const res= new Validation('example@mail.com',
+'10.08.2025', 'C:\\Users\\ИмяПользователя\\Documents\\МояПапка');
+console.log(res.isValidDate());
+console.log(res.isValidEmail());
+console.log(res.isValidPath());

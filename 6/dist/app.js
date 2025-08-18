@@ -373,3 +373,107 @@
 // console.log(res.isValidDate());
 // console.log(res.isValidEmail());
 // console.log(res.isValidPath());
+// 7. Создайте класс ArrayAnalyzer, который будет содержать массив чисел как поле класса,
+// инициализируемое через конструктор. Реализуйте методы:
+// • getAverage для вычисления среднего значения массива,
+// • getMax для поиска максимального значения в массиве,
+// • getMin для поиска минимального значения в массиве.
+// class ArrayAnalyzer {
+//     arr:number[];
+//     constructor( arr:number[]){
+//         this.arr=arr;
+//     }
+//     getAverage(){
+//         return this.arr.reduce((acc,el)=> (acc+el)/this.arr.length,0)
+//     }
+//     getMax(){
+//          return this.arr.reduce((max,el)=> el>max? el:max)
+//     }
+//     getMin(){
+//          return this.arr.reduce((min,el)=> el<min? el:min)
+//     }
+// }
+// const res=new ArrayAnalyzer([2,1,3,7,4,9,6]);
+// console.log(res.getAverage());
+// console.log(res.getMax());
+// console.log(res.getMin());
+// 8. Создайте класс StringManipulator, который будет иметь три метода:
+// • reverseString(str) — разворачивает строку,
+// • isPalindrome(str) — проверяет, является ли строка палиндромом,
+// • countVowels(str) — подсчитывает количество гласных букв в строке.
+// class StringManipulator{
+//     str:string;
+//     reverseString(str:string){
+//         return str.split('').reverse().join('');
+//     }
+// isPalindrome(str:string){
+//     return str===str.split('').reverse().join('')? true:false;
+// }
+// countVowels(str: string): number {
+//     const arr: string[] = ['e', 'u', 'i', 'o', 'a','y'];
+//     let count = 0;
+//     for (let i = 0; i < str.length; i++) {
+//         const char = str[i].toLowerCase(); 
+//         if (arr.includes(char)) {
+//             count++; 
+//         }
+//     }
+//     return count; 
+// }
+// }
+// const res=new StringManipulator();
+// console.log(res.reverseString('qwerty'));
+// console.log(res.isPalindrome('qwq'));
+// console.log(res.countVowels('qwerty'));
+// 9. Создайте интерфейс iPwd, который описывает метод showPwd. Реализуйте класс Pwd, который
+// будет содержать метод showPwd, возвращающий случайно сгенерированный пароль из 8 цифр.
+// Создайте класс Validation, который наследуется от Pwd и переопределяет метод showPwd,
+// вызывая метод родительского класса через super и дополняя его выводом результата в консоль.
+// interface iPwd{
+// showPwd():string;
+// }
+// class Pwd{
+// showPwd(){
+//    let password:string='';
+// for(let i=1;password.length<8;i++){
+//   password+=Math.round(Math.random()*100+1);
+// }
+// return password;
+// }
+// }
+// class Validation extends Pwd {
+//     showPwd(): string {
+//         const pwd = super.showPwd(); 
+//         console.log(`пароль: ${pwd}`); 
+//         return pwd; 
+//     }
+// }
+// const res= new Validation();
+// res.showPwd();
+// 10 Создайте абстрактный класс University, который содержит:
+// • абстрактный метод getStudentById(id: number),
+// • поле students — массив объектов студентов.
+// Реализуйте класс Student, который наследуется от University и реализует метод getStudentById,
+// возвращающий объект студента по его ID.
+class University {
+    students;
+    constructor(students) {
+        this.students = students;
+    }
+}
+class Student extends University {
+    constructor(students) {
+        super(students);
+    }
+    getStudentById(id) {
+        return this.students.find(student => student.id === id);
+    }
+}
+const students = [
+    { id: 1, name: 'Alice' },
+    { id: 2, name: 'Bob' },
+    { id: 3, name: 'Charlie' }
+];
+const university = new Student(students);
+console.log(university.getStudentById(1));
+console.log(university.getStudentById(3));
